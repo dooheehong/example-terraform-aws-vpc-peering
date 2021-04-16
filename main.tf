@@ -50,3 +50,12 @@ resource "aws_route" "secondary2primary" {
   destination_cidr_block    = aws_vpc.primary.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.primary2secondary.id
 }
+
+resource "aws_key_pair" "main" {
+  public_key      = file("./${var.key_name}.pub")
+  key_name = var.key_name
+  lifecycle {
+    ignore_changes = [public_key]
+  }
+}
+

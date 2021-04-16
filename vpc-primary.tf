@@ -37,7 +37,7 @@ resource "aws_subnet" "primary-az1" {
   vpc_id                  = aws_vpc.primary.id
   cidr_block              = "172.30.131.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "ap-southeast-2a"
+  availability_zone       = "us-west-1a"
 }
 
 /**
@@ -49,7 +49,7 @@ resource "aws_subnet" "primary-az2" {
   vpc_id                  = aws_vpc.primary.id
   cidr_block              = "172.30.132.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "ap-southeast-2b"
+  availability_zone       = "us-west-1c"
 }
 
 /**

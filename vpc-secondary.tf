@@ -49,7 +49,7 @@ resource "aws_subnet" "secondary-az2" {
   vpc_id                  = aws_vpc.secondary.id
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "${var.region}b"
+  availability_zone       = "${var.region}c"
 }
 
 /**

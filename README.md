@@ -14,6 +14,14 @@ Once provisioning is complete, run the [test script](test-instance-connectivity.
 * Terraform v0.7 or greater
 * An AWS account
 
+## Prep
+```
+ssh-keygen -t rsa -C devops-peering -P "" -f devops-peering -q
+mkdir -p ~/.ssh
+mv -Rf devops-peering* ~/.ssh
+ssh-add ~/.ssh/devops-peering
+```
+
 ## Usage
 
 **1\. Ensure your AWS credentials are set up.**
@@ -21,18 +29,17 @@ Once provisioning is complete, run the [test script](test-instance-connectivity.
 This can be done using environment variables:
 
 ``` bash
-$ export AWS_SECRET_ACCESS_KEY='your secret key'
-$ export AWS_ACCESS_KEY_ID='your key id'
+export AWS_SECRET_ACCESS_KEY='your secret key'
+export AWS_ACCESS_KEY_ID='your key id'
 ```
 
 ... or the `~/.aws/credentials` file.
 
 ```
-$ cat ~/.aws/credentials
+cat ~/.aws/credentials
 [default]
 aws_access_key_id = your key id
 aws_secret_access_key = your secret key
-
 ```
 
 **2\. Review the Terraform plan.**
@@ -40,7 +47,7 @@ aws_secret_access_key = your secret key
 Execute the below command and ensure you are happy with the plan.
 
 ``` bash
-$ terraform plan
+terraform plan
 ```
 
 **3\. Execute the Terraform apply.**
@@ -48,13 +55,13 @@ $ terraform plan
 Now execute the plan to provision the AWS resources.
 
 ``` bash
-$ terraform apply
+terraform apply
 ```
 
-**4\. Run the test PHP script.**
+**4\. Run the test script.**
 
 ``` bash
-$ php test-instance-connectivity.php
+bash check.sh
 ```
 
 **5\. Destroy the resources.**
@@ -62,5 +69,5 @@ $ php test-instance-connectivity.php
 Once you are finished your testing, ensure you destroy the resources to avoid unnecessary AWS charges.
 
 ``` bash
-$ terraform destroy
+terraform destroy
 ```
