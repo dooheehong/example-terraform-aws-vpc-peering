@@ -13,7 +13,6 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "primary-az1" {
   instance_type          = var.instance_class
-//  ami                    = var.ami_id
   ami                    = data.aws_ami.ubuntu.id
   key_name               = var.key_name
   subnet_id              = aws_subnet.primary-az1.id
@@ -39,7 +38,6 @@ resource "aws_instance" "primary-az1" {
 
 resource "aws_instance" "primary-az2" {
   instance_type          = var.instance_class
-//  ami                    = var.ami_id
   ami                    = data.aws_ami.ubuntu.id
   key_name               = var.key_name
   subnet_id              = aws_subnet.primary-az2.id
@@ -65,7 +63,6 @@ resource "aws_instance" "primary-az2" {
 
 resource "aws_instance" "secondary-az1" {
   instance_type          = var.instance_class
-//  ami                    = var.ami_id
   ami                    = data.aws_ami.ubuntu.id
   key_name               = var.key_name
   subnet_id              = aws_subnet.secondary-az1.id
@@ -91,7 +88,6 @@ resource "aws_instance" "secondary-az1" {
 
 resource "aws_instance" "secondary-az2" {
   instance_type          = var.instance_class
-//  ami                    = var.ami_id
   ami                    = data.aws_ami.ubuntu.id
   key_name               = var.key_name
   subnet_id              = aws_subnet.secondary-az2.id

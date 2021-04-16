@@ -4,7 +4,11 @@
  * Virtual network which will be referred to as "secondary" in this example.
  */
 resource "aws_vpc" "primary" {
-  cidr_block = "172.30.0.0/16"
+  cidr_block = "20.10.0.0/16"
+  tags          = {
+    project = "peering",
+    name = "primary"
+  }
 }
 
 /**
@@ -35,7 +39,7 @@ resource "aws_route" "primary-internet_access" {
  */
 resource "aws_subnet" "primary-az1" {
   vpc_id                  = aws_vpc.primary.id
-  cidr_block              = "172.30.131.0/24"
+  cidr_block              = "20.10.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-west-1a"
 }
@@ -47,7 +51,7 @@ resource "aws_subnet" "primary-az1" {
  */
 resource "aws_subnet" "primary-az2" {
   vpc_id                  = aws_vpc.primary.id
-  cidr_block              = "172.30.132.0/24"
+  cidr_block              = "20.10.3.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-west-1c"
 }
